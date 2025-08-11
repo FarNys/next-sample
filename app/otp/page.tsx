@@ -7,6 +7,7 @@ const baseUrl = "https://balssimarket.com/api/v1";
 const OTPPage = () => {
   const [otpValue, setOtpValue] = useState("");
   const [otpResponse, setOtpResponse] = useState<Credential | null>(null);
+  const [error, setError] = useState<any>(null);
 
   async function sendOtpHandler() {
     axios
@@ -31,6 +32,7 @@ const OTPPage = () => {
         })
         .catch((err) => {
           console.log(err);
+          setError(err);
         });
     }
     return () => {
@@ -51,7 +53,8 @@ const OTPPage = () => {
       <button className="border p-3" onClick={sendOtpHandler}>
         Send
       </button>
-      <div className="p-4 border">{JSON.stringify(otpResponse)}</div>
+      <div className="p-4 border">Response = {JSON.stringify(otpResponse)}</div>
+      <div className="p-4 border">Error {JSON.stringify(error)}</div>
     </div>
   );
 };

@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
+import RegisterSW from "./RegisterSW";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -33,7 +35,18 @@ export default function RootLayout({
       <body
       // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <RegisterSW />
+        <div className="">
+          <div className="flex gap-3 p-2">
+            <Link href={"/ai-chat"}>Ai Chat</Link>
+            <Link href={"/chats"}>Chats Render</Link>
+            <Link href={"/effect"}>Effect</Link>
+            <Link href={"/layout-test"}>Layout test</Link>
+            <Link href={"/otp"}>OTP</Link>
+            <Link href={"/api-sample"}>API Sample</Link>
+          </div>
+          {children}
+        </div>
       </body>
     </html>
   );
