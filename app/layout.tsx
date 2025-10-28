@@ -47,6 +47,7 @@ export default function RootLayout({
             <Link href={"/checkbox"}>Checkboxes</Link>
             <Link href={"/sliders"}>Slider</Link>
             <Link href={"/use-transition"}>useTransition</Link>
+            <Link href={"/virtualize"}>Virtualized</Link>
           </div>
           {children}
         </div>
