@@ -51,3 +51,15 @@ registerRoute(
     ],
   })
 );
+
+//NEED TO TEST THIS IF IT SHOW OFFLINE.HTML PAGE IN CASE OF NOT CACHED PAGE
+setCatchHandler(async ({ event }) => {
+  // The 'event' object contains the request that failed.
+  // We can use the 'destination' property to check the type of the request.
+  if (event.request.destination === "document") {
+    // If the request was for an HTML page, serve the cached offline page.
+    return caches.match(OFFLINE_PAGE_URL);
+  }
+  // For other types of requests (e.g., images, scripts), we can return an error.
+  return Response.error();
+});

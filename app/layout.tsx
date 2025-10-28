@@ -44,6 +44,9 @@ export default function RootLayout({
             <Link href={"/layout-test"}>Layout test</Link>
             <Link href={"/otp"}>OTP</Link>
             <Link href={"/api-sample"}>API Sample</Link>
+            <Link href={"/checkbox"}>Checkboxes</Link>
+            <Link href={"/sliders"}>Slider</Link>
+            <Link href={"/use-transition"}>useTransition</Link>
           </div>
           {children}
         </div>
