@@ -49,6 +49,7 @@ export default function RootLayout({
             <Link href={"/use-transition"}>useTransition</Link>
             <Link href={"/virtualize"}>Virtualized</Link>
             <Link href={"/dropdown-modal"}>Dropdown Modal</Link>
+            <Link href={"/calendar"}>Calendar</Link>
           </div>
           {children}
         </div>
