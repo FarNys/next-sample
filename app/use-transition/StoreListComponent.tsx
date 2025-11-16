@@ -1,10 +1,11 @@
 "use client";
-import React, { useEffect, useRef, useTransition } from "react";
+import React, { useEffect, useRef, useState, useTransition } from "react";
 import useListStore from "./useListStore";
 import { Loader2 } from "lucide-react";
 
 const StoreListComponent = () => {
   const timeRef = useRef(0);
+  const [forceUpdate, setForceUpdate] = useState(false);
   const storeList = useListStore((state) => state.storeList);
   const setStoreList = useListStore((state) => state.setStoreList);
 
@@ -12,17 +13,18 @@ const StoreListComponent = () => {
 
   function updateListHandler() {
     timeRef.current = performance.now();
-    startTransition(() => {
+    setForceUpdate((prev) => !prev);
+    setTimeout(() => {
+      // startTransition(() => {
       setStoreList();
-    });
+      // });
+    }, 0);
   }
 
   useEffect(() => {
-    if (!isPending) {
-      const end = performance.now();
-      console.log("Zustand Delta:", end - timeRef.current);
-    }
-  }, [isPending]);
+    const end = performance.now();
+    console.log("Zustand Delta With useEffect:", end - timeRef.current);
+  }, [forceUpdate]);
 
   return (
     <div className="flex flex-col w-[200px] relative">

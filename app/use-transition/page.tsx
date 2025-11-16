@@ -1,10 +1,18 @@
 "use client";
-import { useState } from "react";
-import StateListComponent from "./StateListComponent";
+import { Profiler, useState } from "react";
+import StateListComponent, { RenderItemsList } from "./StateListComponent";
 import StoreListComponent from "./StoreListComponent";
 
 const TransitionPage = () => {
   const [isShow, setIsShow] = useState(false);
+
+  function onRenderZustand(a, b, c) {
+    console.log("Zustand Profiler:", c);
+  }
+
+  function onRenderState(a, b, c) {
+    console.log("State Profiler:", c);
+  }
 
   return (
     <div className="flex flex-col gap-4">
@@ -17,8 +25,20 @@ const TransitionPage = () => {
         </button>
       </div>
       <div className="flex gap-4">
-        <div className="border p-4">{isShow && <StateListComponent />}</div>
-        <div className="border p-4">{/* <StoreListComponent /> */}</div>
+        <div className="border p-4">
+          {isShow && (
+            <Profiler id="react-state" onRender={onRenderState}>
+              <StateListComponent>
+                <RenderItemsList />
+              </StateListComponent>
+            </Profiler>
+          )}
+        </div>
+        <div className="border p-4">
+          <Profiler id="zustand" onRender={onRenderZustand}>
+            <StoreListComponent />
+          </Profiler>
+        </div>
       </div>
     </div>
   );
